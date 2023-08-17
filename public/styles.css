@@ -54,12 +54,13 @@ body {
   .content {
     padding: 20px;
     line-height: 1.6;
+    display: flex;
   }
   
   .note {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 45%;
@@ -75,5 +76,14 @@ body {
     padding: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+  }
+  input[type=text] {
+    border : 2px solid red;
+    border-radius: 4px;
+    transition: width 0.4s ease-in-out;
+    font-family: 'Cherry Bomb One', cursive;
+  }
+  input[type=text]:focus {
+    width: 100%;
   }
   
