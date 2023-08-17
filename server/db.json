@@ -2,11 +2,13 @@
     {
         "id" : 1,
         "title" : "Grocery List",
-        "body" : "Mushrooms, bleach, steak, and chips"
+        "body" : "Mushrooms, bleach, steak, and chips",
+        "rank" : 2
     },
     {
         "id" : 2,
         "title" : "Pick up Stacy",
-        "body" : "7:45 PM at 114 Clement Street"
+        "body" : "7:45 PM at 114 Clement Street",
+        "rank" : 5
     }
 ]
