@@ -1,8 +1,8 @@
 console.log('connected')
 const note = document.getElementById('notes-container')
-
 const getNotes = () =>{
-    axios.get('http://localhost:5050/api/getNotes')
+    axios
+    .get('http://localhost:5050/api/getNotes')
     .then((res) =>{
         console.log(res.data)
         res.data.forEach(displayNote)
