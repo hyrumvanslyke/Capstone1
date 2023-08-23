@@ -30,10 +30,10 @@ const createNote = (event) =>{
     let bodyObj = {
         title: title.value,
         body: body.value,
-        rank: body.value
+        rank: rank.value
     }
     axios
-    .post(`http://localhost:5050/api/createNote/`,bodyObj)
+    .post(`http://localhost:5050/api/createNote`,bodyObj)
     .then((res) =>{
       note.innerHTML=''
       res.data.forEach(displayNote)

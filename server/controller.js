@@ -24,7 +24,7 @@ module.exports ={
         VALUES(
             '${title}',
             '${body}',
-            '${rank}',
+            '${rank}'
         )
         RETURNING *
         `)
