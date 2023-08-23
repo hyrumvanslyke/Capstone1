@@ -5,7 +5,7 @@ const getNotes = () =>{
     axios.get('http://localhost:5050/api/getNotes')
     .then((res) =>{
         console.log(res.data)
-        res.data.forEach(createNote)
+        res.data.forEach(displayNote)
     })
     .catch((err) =>{
         console.log(err)
@@ -18,7 +18,7 @@ const deleteNote = (id) =>{
     .delete(`http://localhost:5050/api/deleteNote/${id}`)
     .then((res) =>{
         note.innerHTML = ''
-        res.data.forEach(createNote)
+        res.data.forEach(displayNote)
     })
     .catch((err) =>{
         console.log(err)
@@ -26,6 +26,20 @@ const deleteNote = (id) =>{
 }
 
 const createNote = (note) =>{
+    axios
+    .post(`http://localhost:5050/api/createNote/`,body)
+    .then((res) =>{
+      note.innerHTML=''
+      res.data.forEach(displayNote)
+    })
+    .catch((err) =>{
+        console.log(err)
+    })
+    
+}
+
+const addNoteBtn = document.getElementById('create-note-btn')
+const displayNote = (note) =>{
     let content = document.getElementById('content')
 
     let holder = document.createElement('div')
@@ -50,10 +64,8 @@ const createNote = (note) =>{
    holder.appendChild(deleteBtn)
    holder.appendChild(updateBtn)
     content.appendChild(holder)
-
-
-
 }
+addNoteBtn.addEventListener('click', createNote)
 
 const updateNote = (id, change) =>{
     axios
@@ -66,3 +78,5 @@ const updateNote = (id, change) =>{
         console.log(err);
     })
 }
+
+getNotes()
