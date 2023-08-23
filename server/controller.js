@@ -1,25 +1,36 @@
-const notes = require('./db.json')
+const db = require('./database')
 let noteID = 3
 module.exports ={
     getNotes: (req, res) => {
-        res.status(200).send(notes)
+        db.query(`
+        SELECT * FROM notes
+        ORDER BY rank ASC;
+        `)
     },
     deleteNotes: (req, res) =>{
-        let index = notes.findIndex((elem) => elem.id === +req.params.id)
-        notes.splice(index, 1)
-        res.status(200).send(notes)
+       let {id} = req.params
+       db.query(`
+       DELETE FROM notes WHERE id = ${id};
+       SELECT * FROM notes
+       `)
+       .then((dbRes) =>{
+        res.status(200).send(dbRes[0])
+       })
     },
     createNotes: (req, res) =>{
-        const {title, body} = req.body
-        let newNote ={
-            id : noteID,
-            title : title,
-            body : body,
-            rank : rank
-        }
-        notes.push(newNote)
-        noteID++
-        res.status(200).send(notes)
+        const {title, body,rank} = req.body
+        db.query(`
+        INSERT INTO notes(title, body, rank)
+        VALUES(
+            '${title}',
+            '${body}',
+            '${rank}',
+        )
+        RETURNING *
+        `)
+        .then((dbRes) =>{
+            res.status(200).send(dbRes[0])
+        })
     },
     updateNotes: (req, res) =>{
         const {type} = req.body

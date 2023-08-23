@@ -5,7 +5,7 @@ const seed = () =>{
         CREATE TABLE notes(
             id SERIAL PRIMARY KEY,
             title VARCHAR(30),
-            description VARCHAR(400),
+            body VARCHAR(400),
             ranking INTEGER
         );
     `)

@@ -5,7 +5,7 @@ const seed = require('./seed')
 const app = express()
 app.use(express.json())
 app.use(cors())
-const controller = require('./controller')
+const controller = require('./controller/notes')
 const {getNotes, deleteNotes, createNotes, updateNotes} = controller
 app.get('/api/notes', getNotes)
 app.delete('/api/notes/:id', deleteNotes)
