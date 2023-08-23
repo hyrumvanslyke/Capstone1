@@ -26,6 +26,8 @@ const deleteNote = (id) =>{
 }
 
 const createNote = (note) =>{
+    let content = document.getElementById('content')
+
     let holder = document.createElement('div')
     holder.classList += 'note-card'
 
@@ -37,15 +39,30 @@ const createNote = (note) =>{
 
     let deleteBtn = document.createElement('button')
     deleteBtn.classList += 'delete-Btn'
+    deleteBtn.addEventListener('click', () => deleteNote(note.id))
 
-    let plusBtn = document.createElement('button')
-    plusBtn.classList += 'plus-Btn'
+    let updateBtn = document.createElement('button')
+    updateBtn.classList += 'update-Btn'
+    updateBtn.addEventListener('click', () => updateNote(note.id))
 
-    let minusBtn = document.createElement('button')
-    plusBtn.classList += 'minus-Btn'
+   holder.appendChild(title)
+   holder.appendChild(body)
+   holder.appendChild(deleteBtn)
+   holder.appendChild(updateBtn)
+    content.appendChild(holder)
 
-    let remove = document.createElement('button')
 
 
+}
 
+const updateNote = (id, change) =>{
+    axios
+    .put(`http://localhost:5050/api/updateNote/${id}`, { change })
+    .then((res) => {
+        note.innerHTML = ''; // Clear existing notes
+        res.data.forEach(createNote);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 }
