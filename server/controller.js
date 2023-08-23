@@ -4,7 +4,7 @@ module.exports ={
     getNotes: (req, res) => {
         db.query(`
         SELECT * FROM notes
-        ORDER BY rank ASC;
+        ORDER BY ranking ASC;
         `)
     },
     deleteNotes: (req, res) =>{
@@ -20,7 +20,7 @@ module.exports ={
     createNotes: (req, res) =>{
         const {title, body,rank} = req.body
         db.query(`
-        INSERT INTO notes(title, body, rank)
+        INSERT INTO notes(title, body, ranking)
         VALUES(
             '${title}',
             '${body}',
@@ -32,17 +32,24 @@ module.exports ={
             res.status(200).send(dbRes[0])
         })
     },
-    updateNotes: (req, res) =>{
-        const {type} = req.body
-        let index = notes.findIndex((elem) => elem.id === +req.params.id)
-        if(type === 'minus'){
-            notes[index].rank -= 1
-            res.status(200).send(notes)
-        }else if(type === 'plus'){
-            notes[index].rank += 1
-            res.status(200).send(notes)
-        }else{
-            res.status(400).send("Can't calculate")
-        }
+    updateNotes: (req, res) => {
+        const { id } = req.params;
+        const { title, body, rank } = req.body;
+
+        db.query(`
+            UPDATE notes
+            SET 
+                title = '${title}',
+                body = '${body}',
+                ranking = '${rank}'
+            WHERE id = ${id}
+            RETURNING *
+        `)
+        .then((dbRes) => {
+            res.status(200).send(dbRes[0]);
+        })
+        .catch((err) => {
+            console.error(err)
+        })
     }
 }
