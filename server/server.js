@@ -2,10 +2,12 @@ const express = require('express')
 const cors = require('cors')
 const db = require('./database')
 const seed = require('./seed')
+
+
 const app = express()
 app.use(express.json())
 app.use(cors())
-const controller = require('./controller/notes')
+const controller = require('./controller')
 const {getNotes, deleteNotes, createNotes, updateNotes} = controller
 app.get('/api/notes', getNotes)
 app.delete('/api/notes/:id', deleteNotes)
