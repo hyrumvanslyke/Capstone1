@@ -50,7 +50,7 @@ const displayNote = (note) =>{
     let content = document.getElementById('content')
 
     let holder = document.createElement('div')
-    holder.classList += 'note-card'
+    holder.classList += 'note'
 
     let title = document.createElement('h3')
     title.textContent = note.title
@@ -59,11 +59,11 @@ const displayNote = (note) =>{
     body.textContent = note.body
 
     let deleteBtn = document.createElement('button')
-    deleteBtn.classList += 'delete-Btn'
+    deleteBtn.classList += 'Delete'
     deleteBtn.addEventListener('click', () => deleteNote(note.id))
 
     let updateBtn = document.createElement('button')
-    updateBtn.classList += 'update-Btn'
+    updateBtn.classList += 'Update'
     updateBtn.addEventListener('click', () => updateNote(note.id))
 
    holder.appendChild(title)

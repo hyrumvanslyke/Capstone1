@@ -4,9 +4,9 @@ const seed = () =>{
     db.query(`
         CREATE TABLE notes(
             id SERIAL PRIMARY KEY,
-            title VARCHAR(30),
-            body VARCHAR(400),
-            ranking INTEGER
+            title VARCHAR(30) REQUIRED,
+            body VARCHAR(400) REQUIRED,
+            ranking INTEGER REQUIRED
         );
     `)
     .then(() =>{

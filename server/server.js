@@ -8,11 +8,11 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 const controller = require('./controller')
-const {getNotes, deleteNotes, createNotes, updateNotes} = controller
+const {getNotes, deleteNote, createNote, updateNote} = controller
 app.get('/api/getNotes', getNotes)
-app.delete('/api/notes/:id', deleteNotes)
-app.post('/api/createNote', createNotes)
-app.put('/api/notes/:id',updateNotes)
+app.delete('/api/deleteNote/:id', deleteNote)
+app.post('/api/createNote', createNote)
+app.put('/api/updateNote/:id',updateNote)
 app.post('/api/seed', seed)
 // need to figure out my api id stuff
 

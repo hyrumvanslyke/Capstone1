@@ -7,7 +7,7 @@ module.exports ={
         ORDER BY ranking ASC;
         `)
     },
-    deleteNotes: (req, res) =>{
+    deleteNote: (req, res) =>{
        let {id} = req.params
        db.query(`
        DELETE FROM notes WHERE id = ${id};
@@ -17,7 +17,7 @@ module.exports ={
         res.status(200).send(dbRes[0])
        })
     },
-    createNotes: (req, res) =>{
+    createNote: (req, res) =>{
         const {title, body,rank} = req.body
         db.query(`
         INSERT INTO notes(title, body, ranking)
@@ -32,7 +32,7 @@ module.exports ={
             res.status(200).send(dbRes[0])
         })
     },
-    updateNotes: (req, res) => {
+    updateNote: (req, res) => {
         const { id } = req.params;
         const { title, body, rank } = req.body;
 
