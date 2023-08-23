@@ -1,67 +1,51 @@
-const notesContainer = document.querySelector('#notes-container')
-const form = document.querySelector('form')
+console.log('connected')
+const note = document.getElementById('notes-container')
 
-
-const notesCallback = ({data : notes}) => displayNotes(notes)
-const errCallback = err => console.log(err)
-const baseURL = null// need to figure out what it would be
-
-const getAllNotes = () => axios
-.get(baseURL)
-.then(notesCallback)
-.catch(errCallback)
-const createNotes = body => axios
-.post(baseURL, body)
-.then(notesCallback)
-.catch(errCallback)
-const deleteNotes = id => axios
-.delete(`${baseURL}/${id}`)
-.then(notesCallback)
-.catch(errCallback)
-const updateNotes = (id, type) => axios
-.put(`${baseURL}/${id}`, {type})
-.then(notesCallback)
-.catch(errCallback)
-
-function submitHandler(e){
-    e.preventDefault()
-    let title = document.querySelector('#title')
-    let body = document.querySelector('#body')
-    let rank = document.querySelector('#rank')
-    let bodyObj = {
-        title: title.value,
-        body: body.value,
-        rank : rank.value
-    }
-    createNotes(bodyObj)
-    title.value = ''
-    body.value = ''
-    rank,value = ''
+const getNotes = () =>{
+    axios.get('http://localhost:5050/api/getNotes')
+    .then((res) =>{
+        console.log(res.data)
+        res.data.forEach(createNote)
+    })
+    .catch((err) =>{
+        console.log(err)
+    })
 }
 
-function createStickyNote(note){
-    const stickyNote = document.createElement('div')
-    stickyNote.classList.add('sticky-note')
-    stickyNote.innerHTML= 
-    `<p class= "title"> ${note.title}</p>
-    <p class= "body">${note.body}</p>
-    <div class="btns-container">
-    <button onclick= "updateNotes(${note.id}, 'minus')">-</button>
-    <p class= "importanceRank">${note.rank}</p>
-    <button onclick= "updateNotes(${note.id}, 'plus')">+</button>
-    </div>
-    <button onclick ="deleteHouse(${note.id})">Delete Note</button>
-    `
-    notesContainer.appendChild(stickyNote)
+const deleteNote = (id) =>{
+    console.log(id)
+    axios
+    .delete(`http://localhost:5050/api/deleteNote/${id}`)
+    .then((res) =>{
+        note.innerHTML = ''
+        res.data.forEach(createNote)
+    })
+    .catch((err) =>{
+        console.log(err)
+    })
 }
 
-function displayNotes(x){
-    notesContainer.innerHTML = ``
-    for(let i = 0; i < x.length; i++){
-        createStickyNote(x[i])
-    }
+const createNote = (note) =>{
+    let holder = document.createElement('div')
+    holder.classList += 'note-card'
+
+    let title = document.createElement('h3')
+    title.textContent = note.title
+
+    let body = document.createElement('p')
+    body.textContent = note.body
+
+    let deleteBtn = document.createElement('button')
+    deleteBtn.classList += 'delete-Btn'
+
+    let plusBtn = document.createElement('button')
+    plusBtn.classList += 'plus-Btn'
+
+    let minusBtn = document.createElement('button')
+    plusBtn.classList += 'minus-Btn'
+
+    let remove = document.createElement('button')
+
+
+
 }
-
-form.addEventListener('submit', submitHandler)
-
-getAllNotes()
