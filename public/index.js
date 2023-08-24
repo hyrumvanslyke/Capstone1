@@ -27,6 +27,8 @@ const deleteNote = (id) =>{
 
 const createNote = (event) =>{
     event.preventDefault()
+    console.log(title)
+    console.log(body)
     let bodyObj = {
         title: title.value,
         body: body.value,
@@ -55,19 +57,28 @@ const displayNote = (note) =>{
     let title = document.createElement('h3')
     title.textContent = note.title
 
+    let importHolder = document.createElement('section')
+    importHolder.innerHTML =
+    `<button onclick="updateNote(${note.id}, 'minus')">-</button>
+        <p class="importance-rank">${note.ranking}</p>
+        <button onclick="updateNote(${note.id}, 'plus')">+</button>`
+
     let body = document.createElement('p')
     body.textContent = note.body
 
     let deleteBtn = document.createElement('button')
     deleteBtn.classList += 'Delete'
+    deleteBtn.textContent += '🚮'
     deleteBtn.addEventListener('click', () => deleteNote(note.id))
 
     let updateBtn = document.createElement('button')
     updateBtn.classList += 'Update'
+    updateBtn.textContent += '🔁'
     updateBtn.addEventListener('click', () => updateNote(note.id))
 
    holder.appendChild(title)
    holder.appendChild(body)
+   holder.appendChild(importHolder)
    holder.appendChild(deleteBtn)
    holder.appendChild(updateBtn)
     content.appendChild(holder)

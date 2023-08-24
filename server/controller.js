@@ -24,7 +24,7 @@ module.exports ={
         VALUES(
             '${title}',
             '${body}',
-            '${rank}'
+            ${rank}
         )
         RETURNING *
         `)
@@ -41,7 +41,7 @@ module.exports ={
             SET 
                 title = '${title}',
                 body = '${body}',
-                ranking = '${rank}'
+                ranking = ${rank}
             WHERE id = ${id}
             RETURNING *
         `)
