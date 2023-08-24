@@ -64,6 +64,7 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 45%;
+    word-break: break-all;
   }
   
   .note h2 {
@@ -106,4 +107,16 @@ body {
   #update-title, #update-body, #update-rank{
    height: 35px; 
   }
-  
+  .import-holder{
+    width: 100%; 
+    display: flex;
+    justify-content: space-evenly;
+    margin: 5px;
+    align-items: center;
+  }
+  #plus-btn, #minus-btn{
+    height: 30px;
+  }
+  .importance-rank{
+    font-size: 45px;
+  }

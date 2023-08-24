@@ -58,10 +58,11 @@ const displayNote = (note) =>{
     title.textContent = note.title
 
     let importHolder = document.createElement('section')
+    importHolder.classList += 'import-holder'
     importHolder.innerHTML =
-    `<button onclick="updateNote(${note.id}, 'minus')">-</button>
+    `<button id = "minus-btn" onclick="updateNote(${note.id}, 'minus')">-</button>
         <p class="importance-rank">${note.ranking}</p>
-        <button onclick="updateNote(${note.id}, 'plus')">+</button>`
+        <button id = "plus-btn" onclick="updateNote(${note.id}, 'plus')">+</button>`
 
     let body = document.createElement('p')
     body.textContent = note.body
