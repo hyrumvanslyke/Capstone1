@@ -37,12 +37,6 @@ module.exports ={
     updateNote: (req, res) => {
         const { id } = req.params;
         const { title, body, rank } = req.body
-
-        // db.query(`SELECT ranking FROM notes WHERE id = ${id}`)
-        // .then((currentR) => {
-        //     const currentRank = currentR[0].ranking;
-    
-        //     const newRank = operation === 'increase' ? currentRank + 1 : currentRank - 1;
         db.query(`
             UPDATE notes
             SET 
@@ -58,6 +52,5 @@ module.exports ={
         .catch((err) => {
             console.error(err)
         })
-    // })
     }
 }

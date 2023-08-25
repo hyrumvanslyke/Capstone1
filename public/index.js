@@ -48,6 +48,17 @@ const createNote = (event) =>{
 const formSubmit = document.getElementById('create-new-note')
 formSubmit.addEventListener('submit', createNote)
 
+function plus(id, element) {
+    let current = element.textContent
+    current += 1
+    element.textContent = current
+}
+function minus(id, element){
+    let current = element.textContent
+    current -= 1
+    element.textContent = current
+}
+
 const displayNote = (note) =>{
     let content = document.getElementById('notes-container')
 
@@ -59,10 +70,22 @@ const displayNote = (note) =>{
 
     let importHolder = document.createElement('section')
     importHolder.classList += 'import-holder'
-    importHolder.innerHTML =
-    `<button id = "minus-btn" onclick="updateNote(${note.id}, 'minus')">-</button>
-        <p class="importance-rank">${note.ranking}</p>
-        <button id = "plus-btn" onclick="updateNote(${note.id}, 'plus')">+</button>`
+    
+    let ranking = document.createElement('p')
+    ranking.classList += 'importance-rank'
+    ranking.textContent += `${note.ranking}`
+
+    let minBtn = document.createElement('button')
+    minBtn.textContent += '-'
+    minBtn.addEventListener('click', () => minus(note.id, ranking))
+
+    let plusBtn = document.createElement('button')
+    plusBtn.textContent += '+'
+    plusBtn.addEventListener('click', () => plus(note.id, ranking))
+   
+    importHolder.appendChild(minBtn)
+    importHolder.appendChild(ranking)
+    importHolder.appendChild(plusBtn)
 
     let body = document.createElement('p')
     body.textContent = note.body
@@ -72,16 +95,10 @@ const displayNote = (note) =>{
     deleteBtn.textContent += '🚮'
     deleteBtn.addEventListener('click', () => deleteNote(note.id))
 
-    let updateBtn = document.createElement('button')
-    updateBtn.classList += 'Update'
-    updateBtn.textContent += '🔁'
-    updateBtn.addEventListener('click', () => updateNote(note.id))
-
    holder.appendChild(title)
    holder.appendChild(body)
    holder.appendChild(importHolder)
    holder.appendChild(deleteBtn)
-   holder.appendChild(updateBtn)
     content.appendChild(holder)
 }
 
