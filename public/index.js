@@ -18,7 +18,7 @@ const deleteNote = (id) =>{
     .delete(`http://localhost:5050/api/deleteNote/${id}`)
     .then((res) =>{
         note.innerHTML = ''
-        res.data.forEach(displayNote)
+        getNotes()
     })
     .catch((err) =>{
         console.log(err)
@@ -49,7 +49,7 @@ const formSubmit = document.getElementById('create-new-note')
 formSubmit.addEventListener('submit', createNote)
 
 const displayNote = (note) =>{
-    let content = document.getElementById('content')
+    let content = document.getElementById('notes-container')
 
     let holder = document.createElement('div')
     holder.classList += 'note'

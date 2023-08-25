@@ -6,15 +6,17 @@ module.exports ={
         SELECT * FROM notes
         ORDER BY ranking ASC;
         `)
+        .then((dbRes) =>{
+            res.status(200).send(dbRes[0])
+        })
     },
     deleteNote: (req, res) =>{
        let {id} = req.params
        db.query(`
        DELETE FROM notes WHERE id = ${id};
-       SELECT * FROM notes
        `)
        .then((dbRes) =>{
-        res.status(200).send(dbRes[0])
+        res.sendStatus(200)
        })
     },
     createNote: (req, res) =>{
@@ -34,14 +36,19 @@ module.exports ={
     },
     updateNote: (req, res) => {
         const { id } = req.params;
-        const { title, body, rank } = req.body;
+        const { title, body, rank } = req.body
 
+        // db.query(`SELECT ranking FROM notes WHERE id = ${id}`)
+        // .then((currentR) => {
+        //     const currentRank = currentR[0].ranking;
+    
+        //     const newRank = operation === 'increase' ? currentRank + 1 : currentRank - 1;
         db.query(`
             UPDATE notes
             SET 
                 title = '${title}',
                 body = '${body}',
-                ranking = ${rank}
+                ranking = ${newRank}
             WHERE id = ${id}
             RETURNING *
         `)
@@ -51,5 +58,6 @@ module.exports ={
         .catch((err) => {
             console.error(err)
         })
+    // })
     }
 }
