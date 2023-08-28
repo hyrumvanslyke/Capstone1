@@ -82,11 +82,13 @@ const displayNote = (note) =>{
     ranking.textContent += `${note.ranking}`
 
     let minBtn = document.createElement('button')
-    minBtn.textContent += '-'
+    minBtn.classList += 'Minus'
+    minBtn.textContent += '⬇'
     minBtn.addEventListener('click', () => minus(note.id, ranking))
 
     let plusBtn = document.createElement('button')
-    plusBtn.textContent += '+'
+    plusBtn.classList += 'Plus'
+    plusBtn.textContent += '⬆'
     plusBtn.addEventListener('click', () => plus(note.id, ranking))
    
     importHolder.appendChild(minBtn)
