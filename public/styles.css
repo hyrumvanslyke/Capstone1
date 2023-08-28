@@ -27,6 +27,10 @@ body {
     bottom: 145px;
     text-shadow: 2px 0 #FFFAA0, -2px 0 #FFFAA0, 0 2px #FFFAA0, 0 -2px #FFFAA0, 1px 1px #FFFAA0, -1px -1px #FFFAA0, 1px -1px #FFFAA0, -1px 1px #FFFAA0;
   }
+  #small-header{
+  color: #FFFAA0;
+  text-shadow: 2px 0 fuchsia, -2px 0 fuchsia, 0 2px fuchsia, 0 -2px fuchsia, 1px 1px fuchsia, -1px -1px fuchsia, 1px -1px fuchsia, -1px 1px fuchsia;
+  }
   button{
     font-family: 'Cherry Bomb One', cursive;
   }
