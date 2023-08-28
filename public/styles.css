@@ -56,21 +56,35 @@ body {
     line-height: 1.6;
     display: flex;
   }
-  
-  .note {
-    /* background-color: rgba(255, 255, 255, 0.9); */
+  .note-sample{
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 10px;
     margin: 10px 10px;
     border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 35%;
+    display: inline-block; 
+    box-sizing: border-box; 
+    vertical-align: top;
+    height: 213px;
+  }
+  
+  .note {
+    /* background-color: rgba(255, 255, 255, 0.9); */
+    padding: 25px;
+    margin: 10px 10px;
+    border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 270px;
     word-break: break-all;
     height: 270px;
     position: relative;
+    display: inline-block; 
+    box-sizing: border-box; 
+    vertical-align: top;
   }
   .note img{
     position: absolute;
-    /* position: relative; */
     top: -20px;
     left: -20px;
     height: 310px;
@@ -100,26 +114,7 @@ body {
   input[type=text]:focus {
     width: 100%;
   }
-  #update-div{
-    position: absolute;
-     top: 65%;
-     left: 50%;
-     transform: translate(-50%,-50%);
-      display: flex;
-     flex-wrap: wrap;
-     flex-direction: row-reverse; 
-     align-items: center;
-    gap: 4px;
-    margin: 8px;
-    width: 500px;
-    height: 225px;
-    padding: 8px;
-    border-radius: 4px;
-    box-shadow: 10px 10px 10px rgba(0,0,0,0.5)
-  }
-  #update-title, #update-body, #update-rank{
-   height: 35px; 
-  }
+  
   .import-holder{
     width: 100%; 
     display: flex;
@@ -128,12 +123,9 @@ body {
     align-items: center;
   }
   #plus-btn, #minus-btn{
-    height: 30px;
+    height: 20px;
   }
   .importance-rank{
-    font-size: 45px;
+    font-size: 35px;
   }
-  /* .note{
-    background: url(./sticky_note_pngs/blue_sticky.png) no-repeat center center ;
-    background-size: 656px;
-  } */
+  

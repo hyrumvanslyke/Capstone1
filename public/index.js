@@ -38,7 +38,7 @@ const createNote = (event) =>{
     .post(`http://localhost:5050/api/createNote`,bodyObj)
     .then((res) =>{
       note.innerHTML=''
-      res.data.forEach(displayNote)
+      getNotes()
     })
     .catch((err) =>{
         console.log(err)
