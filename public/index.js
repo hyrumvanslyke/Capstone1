@@ -49,7 +49,7 @@ const formSubmit = document.getElementById('create-new-note')
 formSubmit.addEventListener('submit', createNote)
 
 function plus(id, element) {
-    let current = element.textContent
+    let current = +element.textContent
     current += 1
     element.textContent = current
 }
@@ -61,10 +61,16 @@ function minus(id, element){
 
 const displayNote = (note) =>{
     let content = document.getElementById('notes-container')
-
+    let imgs = [
+        './sticky_note_pngs/blue_sticky.png',
+        './sticky_note_pngs/green_sticky.png',
+        './sticky_note_pngs/pink_sticky.png',
+        './sticky_note_pngs/yellow_sticky.png'
+    ]
+    let stickyNote = imgs[Math.floor(Math.random()*imgs.length)]
     let holder = document.createElement('div')
     holder.classList += 'note'
-
+    holder.innerHTML = `<img src="${stickyNote}">`
     let title = document.createElement('h3')
     title.textContent = note.title
 
