@@ -14,6 +14,5 @@ app.delete('/api/deleteNote/:id', deleteNote)
 app.post('/api/createNote', createNote)
 app.put('/api/updateNote/:id',updateNote)
 app.post('/api/seed', seed)
-// need to figure out my api id stuff
 
 app.listen(5050, () => console.log('Server is up and running on port 5050'))
