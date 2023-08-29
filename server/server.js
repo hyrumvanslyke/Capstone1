@@ -2,11 +2,11 @@ const express = require('express')
 const cors = require('cors')
 const db = require('./database')
 const seed = require('./seed')
-
+const path = require('path')
 
 const app = express()
 app.use(express.json())
-app.use(express.static(`${__dirname}/public`))
+app.use(express.static(path.resolve(__dirname,"../public")))
 app.use(cors())
 const controller = require('./controller')
 const {getNotes, deleteNote, createNote, updateNote} = controller

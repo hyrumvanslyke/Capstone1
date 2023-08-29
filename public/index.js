@@ -2,7 +2,7 @@ console.log('connected')
 const note = document.getElementById('notes-container')
 const getNotes = () =>{
     axios
-    .get('http://localhost:5050/api/getNotes')
+    .get('/api/getNotes')
     .then((res) =>{
         console.log(res.data)
         res.data.forEach(displayNote)
@@ -15,7 +15,7 @@ const getNotes = () =>{
 const deleteNote = (id) =>{
     console.log(id)
     axios
-    .delete(`http://localhost:5050/api/deleteNote/${id}`)
+    .delete(`/api/deleteNote/${id}`)
     .then((res) =>{
         note.innerHTML = ''
         getNotes()
@@ -35,7 +35,7 @@ const createNote = (event) =>{
         rank: rank.value
     }
     axios
-    .post(`http://localhost:5050/api/createNote`,bodyObj)
+    .post(`/api/createNote`,bodyObj)
     .then((res) =>{
       note.innerHTML=''
       getNotes()
@@ -112,7 +112,7 @@ const displayNote = (note) =>{
 
 const updateNote = (id, change) =>{
     axios
-    .put(`http://localhost:5050/api/updateNote/${id}`, { change })
+    .put(`/api/updateNote/${id}`, { change })
     .then((res) => {
         note.innerHTML = ''
         res.data.forEach(createNote)
