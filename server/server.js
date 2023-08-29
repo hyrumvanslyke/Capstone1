@@ -6,6 +6,7 @@ const seed = require('./seed')
 
 const app = express()
 app.use(express.json())
+app.use(express.static(`${__dirname}/public`))
 app.use(cors())
 const controller = require('./controller')
 const {getNotes, deleteNote, createNote, updateNote} = controller
